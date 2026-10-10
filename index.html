@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d1b">
+<title>WEBRISE — Rise Online. Grow Faster.</title>
+<style>
+:root{--bg:#080d1b;--panel:#111b2e;--line:#293952;--text:#f5f7ff;--muted:#9caac2;--aqua:#43e5ce;--blue:#6485ff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:radial-gradient(ellipse at 10% 0%,#182746,transparent 42%),radial-gradient(ellipse at 100% 45%,#0b2830,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}
+button,input,select,textarea{font:inherit}
+button,a{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
+.hidden{display:none!important}
+.container{width:min(1160px,calc(100% - 32px));margin:auto}
+.muted{color:var(--muted)}.small{font-size:13px}
+header{height:78px;position:sticky;top:0;z-index:20;background:#080d1bee;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff14}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;gap:12px;align-items:center;text-decoration:none}
+.brand-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--aqua));color:#071321;font-size:28px;font-weight:1000}
+.brand-name{font-size:23px;font-weight:950;letter-spacing:1px;line-height:1.2}
+.brand-tag{font-size:10px;letter-spacing:1.5px;color:#a5b3ce}
+.navlinks{display:flex;align-items:center;gap:18px}
+.navlinks a{color:#cbd5e7;text-decoration:none;font-size:14px}
+.btn{border:1px solid var(--line);border-radius:12px;padding:11px 16px;background:#131e32;color:white;font-weight:750;transition:transform .2s,border-color .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--aqua)}
+.primary{background:linear-gradient(110deg,var(--aqua),#8af2d9);border:0;color:#071321}
+.danger{background:#401a2a;color:#ffd9e0}
+.hero{min-height:570px;padding:70px 0 55px;display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:center}
+.eyebrow{display:inline-block;padding:7px 12px;border:1px solid #2b4960;border-radius:50px;color:var(--aqua);font-size:12px;letter-spacing:1px;font-weight:800;background:#102332}
+h1{font-size:clamp(42px,6vw,76px);line-height:1.04;letter-spacing:-2.5px;margin:22px 0}
+.gradient{background:linear-gradient(95deg,#fff,#7feadf 55%,#819bff);background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:570px}
+.hero-visual{padding:25px;border:1px solid #2a3b57;border-radius:28px;background:linear-gradient(145deg,#172540,#0a1223);box-shadow:0 30px 80px #0005;animation:float 5s ease-in-out infinite}
+.browser{border-bottom:1px solid #29364d;padding-bottom:17px;color:#aab8d0}
+.dots{display:inline-flex;gap:6px;margin-right:10px}.dots i{width:8px;height:8px;border-radius:50%;background:#8190a9}
+.mock{margin-top:24px;padding:22px;border:1px solid #2b3b57;border-radius:18px;background:#0b1426}
+.mock-logo{display:inline-grid;place-items:center;width:45px;height:45px;border-radius:14px;background:linear-gradient(140deg,var(--blue),var(--aqua));color:#071321;font-size:25px;font-weight:950;margin-right:10px}
+.mockline{height:8px;border-radius:20px;background:#263650;margin-top:14px;width:80%}.short{width:45%}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.tiles div{height:65px;border:1px solid #2c3b55;border-radius:12px;background:linear-gradient(140deg,#182743,#10182a)}
+.section{padding:55px 0}
+.section-head{margin-bottom:25px}.section-head h2{font-size:clamp(28px,4vw,42px);line-height:1.2;margin:0 0 8px;letter-spacing:-1px}.section-head p{margin:0;color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card,.panel{padding:24px;border:1px solid var(--line);border-radius:21px;background:linear-gradient(145deg,#131e32,#0e1628)}
+.card{transition:transform .25s,border-color .25s}.card:hover{transform:translateY(-6px);border-color:#43e5ce88}
+.card-icon{width:44px;height:44px;border-radius:14px;background:#1b3040;display:grid;place-items:center;font-size:22px;margin-bottom:13px}
+.card h3{margin:0 0 8px}.card p{margin:0;color:var(--muted);font-size:14px}
+.form-layout{display:grid;grid-template-columns:245px minmax(0,1fr);gap:20px;align-items:start}
+.steps-card{position:sticky;top:98px}
+.step-list{display:grid;gap:10px;margin:18px 0}
+.step-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;color:var(--muted)}
+.step-item.active{background:#1b2942;color:white}.step-number{width:32px;height:32px;flex-shrink:0;display:grid;place-items:center;border:1px solid #40506c;border-radius:50%;font-weight:800}
+.step-item.done .step-number,.step-item.active .step-number{background:var(--aqua);border-color:var(--aqua);color:#071321}
+.form-panel{padding:clamp(18px,3vw,32px)}
+.form-step h3{font-size:25px;margin:0 0 5px}.form-step>p{margin:0 0 22px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.field{min-width:0}.field.full{grid-column:1/-1}
+.field label,.field-label{display:block;font-size:13px;font-weight:800;margin-bottom:7px;color:#d5deef}
+.field input,.field select,.field textarea{width:100%;min-width:0;background:#080f1d;color:white;border:1px solid #26344d;border-radius:12px;padding:13px}
+.field textarea{min-height:105px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#71809a}
+.field select{color-scheme:dark}
+.form-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:25px;padding-top:20px;border-top:1px solid #25334a}
+.upload-box{border:1px dashed #536b94;background:linear-gradient(135deg,#14233b,#0d1628);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+.upload-symbol{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;border-radius:15px;background:#203654;font-size:24px}
+.upload-content{flex:1;min-width:0}.upload-content h4{margin:0 0 4px}.upload-content p{margin:0;color:var(--muted);font-size:13px}
+.file-picker{display:block;width:100%;margin-top:13px;padding:10px;background:#080f1d;border:1px solid #26344d;border-radius:12px;color:white}
+.file-preview{display:flex;gap:13px;align-items:center;flex-wrap:wrap;margin-top:15px}
+.file-preview img{width:95px;height:95px;object-fit:contain;background:white;border-radius:12px;padding:6px}
+.colour-box{border:1px solid #26344d;border-radius:15px;padding:15px;background:#0a1222}
+.colour-grid{display:grid;grid-template-columns:repeat(10,minmax(20px,1fr));gap:12px 8px}
+.colour-choice{display:grid;place-items:center}.colour-choice input{position:absolute;opacity:0}
+.swatch{width:26px;height:26px;border-radius:50%;display:block;border:2px solid #ffffff55}
+.colour-choice input:checked+.swatch{outline:3px solid white;outline-offset:3px}
+.selected-colours{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
+.colour-chip{padding:4px 9px;border:1px solid #33445e;border-radius:30px;font-size:12px}
+.success-wrap{min-height:65vh;display:grid;place-items:center;padding:40px 0}
+.success-card{width:min(720px,100%);text-align:center;padding:clamp(25px,5vw,60px);border:1px solid #2b3b56;border-radius:28px;background:linear-gradient(145deg,#131f34,#0b1222)}
+.success-check{width:78px;height:78px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;background:#153a3b;color:var(--aqua);font-size:42px}
+.success-card h2{font-size:clamp(34px,5vw,52px);margin:0}
+.tracking-id{font-size:clamp(23px,4vw,34px);font-weight:950;color:var(--aqua);margin:20px 0}
+.track-panel{max-width:650px;margin:auto}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.detail{border:1px solid #2b3a54;border-radius:13px;background:#0b1425;padding:13px;min-width:0;overflow-wrap:anywhere}
+.detail.full{grid-column:1/-1}.detail-label{font-size:11px;letter-spacing:1px;color:#93a6c4;font-weight:850;margin-bottom:5px;text-transform:uppercase}
+.detail-value{white-space:pre-wrap;overflow-wrap:anywhere}.detail a{color:var(--aqua)}
+.logo-detail{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.logo-detail img{width:180px;height:160px;object-fit:contain;background:white;border-radius:12px;padding:8px}
+.login{max-width:440px;margin:45px auto}
+.dashboard-top{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.stat{padding:17px;border:1px solid #293951;border-radius:15px;background:#111b2e}.stat strong{font-size:28px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.tab{border:1px solid #2d3b54;background:#10192b;color:#b9c6dc;padding:9px 13px;border-radius:10px}.tab.active{background:#d8fff7;color:#071321;font-weight:850}
+.table-wrap{overflow-x:auto;border:1px solid #293951;border-radius:15px}
+table{width:100%;border-collapse:collapse;min-width:650px;background:#0e1729}
+th,td{text-align:left;padding:12px;border-bottom:1px solid #25334a;font-size:13px;vertical-align:middle}
+th{color:#9eafca;background:#121e32}td{overflow-wrap:anywhere}
+.pill{display:inline-block;padding:5px 10px;border-radius:30px;background:#263550;font-size:12px}
+.pill.done{background:#174039;color:#9bf3d9}.pill.progress{background:#3c3159;color:#d6c2ff}
+.modal-backdrop{position:fixed;inset:0;z-index:100;background:#01040cd9;display:flex;align-items:center;justify-content:center;padding:12px}
+.modal{width:min(900px,100%);max-height:92vh;overflow:auto;background:#111b2e;border:1px solid #354563;border-radius:20px;padding:20px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:200;background:#e7fff9;color:#071321;padding:12px 18px;border-radius:12px;font-weight:800;max-width:90%;box-shadow:0 10px 40px #0008}
+.toast.error{background:#ffe2e8;color:#571527}
+footer{border-top:1px solid #253148;padding:25px 0;color:var(--muted);font-size:13px;margin-top:40px}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.75,.25,1)}
+.reveal.from-left{transform:translateX(-45px)}.reveal.from-right{transform:translateX(45px)}
+.reveal.visible{opacity:1;transform:translate(0,0)}
+.hero-copy{animation:heroIn .8s both}.hero-visual{animation:heroIn .9s .15s both,float 5s 1s ease-in-out infinite}
+@keyframes heroIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media(max-width:850px){
+ .hero{grid-template-columns:1fr;padding-top:45px}.form-layout{grid-template-columns:1fr}.steps-card{position:static}
+ .step-list{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+ .step-item{flex-direction:column;text-align:center;font-size:12px;padding:7px 2px}
+ .grid3{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
+ .navlinks{gap:10px}.navlinks a{font-size:12px}
+}
+@media(max-width:560px){
+ header{height:72px}.brand-icon{width:40px;height:40px}.brand-name{font-size:20px}.brand-tag{font-size:8px}
+ .container{width:calc(100% - 22px)}.navlinks a{display:none}
+ .hero{padding:35px 0}.hero-visual{padding:16px}.fields{grid-template-columns:1fr;gap:14px}
+ .field.full,.detail.full{grid-column:auto}.detail-grid{grid-template-columns:1fr}
+ .form-panel{padding:17px}.colour-grid{grid-template-columns:repeat(7,minmax(20px,1fr))}
+ .form-actions .btn{padding:10px}.upload-box{padding:13px}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="container nav">
+  <a class="brand" href="#home"><div class="brand-icon">W</div><div><div class="brand-name">WEBRISE</div><div class="brand-tag">RISE ONLINE. GROW FASTER.</div></div></a>
+  <nav class="navlinks"><a href="#services">Services</a><a href="#how">How it works</a><a href="#get-started">Get started</a><a href="#track">Track</a><button class="btn" onclick="showManagement()">Management</button></nav>
+ </div>
+</header>
+
+<main id="home">
+<div id="publicPage">
+ <section class="container hero">
+  <div class="hero-copy">
+   <span class="eyebrow">YOUR BUSINESS. YOUR DIGITAL FUTURE.</span>
+   <h1>Make your brand<br><span class="gradient">impossible to ignore.</span></h1>
+   <p>Tell us about your business. WEBRISE helps you plan a modern, professional website that matches your brand, style and goals.</p>
+   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px"><a href="#get-started"><button class="btn primary">Start your request ↗</button></a><a href="#services"><button class="btn">Explore services</button></a></div>
+   <p class="small">Simple request process · Personalised design · Request tracking</p>
+  </div>
+  <div class="hero-visual">
+   <div class="browser"><span class="dots"><i></i><i></i><i></i></span>yourbrand.website</div>
+   <div class="mock"><div><span class="mock-logo">W</span><strong>Your Brand</strong><div class="muted small">Your digital presence</div></div><div class="mockline"></div><div class="mockline short"></div><div class="tiles"><div></div><div></div><div></div></div><p style="color:var(--aqua);font-size:12px;font-weight:800">DESIGNED AROUND YOU ✦</p></div>
+  </div>
+ </section>
+
+ <section class="container section" id="services">
+  <div class="section-head reveal"><h2>Everything starts with your vision.</h2><p>Share what you need, and tell us how your website should feel.</p></div>
+  <div class="grid3">
+   <article class="card reveal"><div class="card-icon">✦</div><h3>Business websites</h3><p>A professional online presence for your business, shop or brand.</p></article>
+   <article class="card reveal"><div class="card-icon">◈</div><h3>Brand-first design</h3><p>Your logo, preferred colours and design style guide the visual direction.</p></article>
+   <article class="card reveal"><div class="card-icon">↗</div><h3>Request tracking</h3><p>Use your tracking ID to check the latest status of your request.</p></article>
+  </div>
+ </section>
+
+ <section class="container section" id="how">
+  <div class="section-head reveal"><h2>Four simple steps.</h2><p>Complete the form and keep your tracking ID for updates.</p></div>
+  <div class="grid3">
+   <article class="card reveal"><div class="card-icon">01</div><h3>Business</h3><p>Tell us your business name, category and location.</p></article>
+   <article class="card reveal"><div class="card-icon">02</div><h3>Contact & details</h3><p>Share your contact information and website goals.</p></article>
+   <article class="card reveal"><div class="card-icon">03</div><h3>Design preferences</h3><p>Choose your style, brand colours and optionally upload a logo.</p></article>
+  </div>
+ </section>
+
+ <section class="container section" id="get-started">
+  <div class="section-head reveal"><h2>Let's build your next step.</h2><p>Complete the form. Fields marked optional can be skipped.</p></div>
+  <div class="form-layout">
+   <aside class="panel steps-card reveal">
+    <strong>Your request</strong><div class="step-list" id="stepList">
+     <div class="step-item active" data-step-label="1"><span class="step-number">1</span><span>Business</span></div>
+     <div class="step-item" data-step-label="2"><span class="step-number">2</span><span>Contact</span></div>
+     <div class="step-item" data-step-label="3"><span class="step-number">3</span><span>Details</span></div>
+     <div class="step-item" data-step-label="4"><span class="step-number">4</span><span>Design</span></div>
+    </div><p class="muted small">Your request is stored in this browser. Keep your tracking ID.</p>
+   </aside>
+
+   <form id="requestForm" class="panel form-panel reveal">
+    <div class="form-step" data-step="1">
+     <h3>Tell us about your business</h3><p class="muted">Start with the basics.</p>
+     <div class="fields">
+      <div class="field full"><label for="businessName">Business / brand name *</label><input id="businessName" name="businessName" required placeholder="e.g. Star Dupatta"></div>
+      <div class="field"><label for="ownerName">Owner's name *</label><input id="ownerName" name="ownerName" required placeholder="Full name"></div>
+      <div class="field"><label for="businessType">Business category *</label><select id="businessType" name="businessType" required><option value="">Select category</option><option>Retail / Shop</option><option>Manufacturer / Wholesaler</option><option>Clothing / Fashion</option><option>Food / Restaurant</option><option>Service provider</option><option>Education</option><option>Technology</option><option>Personal brand / Creator</option><option>Other</option></select></div>
+      <div class="field"><label for="city">City *</label><input id="city" name="city" required placeholder="e.g. Surat"></div>
+      <div class="field"><label for="state">State *</label><input id="state" name="state" required placeholder="e.g. Gujarat"></div>
+      <div class="field full"><label for="address">Business address *</label><textarea id="address" name="address" required placeholder="Shop number, market, street or area"></textarea></div>
+     </div>
+     <div class="form-actions"><span class="muted small">Step 1 of 4</span><button class="btn primary" type="button" onclick="nextStep(1)">Continue →</button></div>
+    </div>
+
+    <div class="form-step hidden" data-step="2">
+     <h3>How can we contact you?</h3><p class="muted">Please check your phone number before continuing.</p>
+     <div class="fields">
+      <div class="field full"><label for="mobile">Mobile number *</label><input id="mobile" name="mobile" type="tel" inputmode="tel" pattern="[0-9+() -]{10,18}" required placeholder="+91 98765 43210"></div>
+      <div class="field full"><label for="email">Email address (optional)</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+      <div class="field full"><label for="whatsapp">WhatsApp number (optional)</label><input id="whatsapp" name="whatsapp" type="tel" placeholder="If different from mobile"></div>
+     </div>
+     <div class="form-actions"><button class="btn" type="button" onclick="prevStep(2)">← Back</button><div><span class="muted small">Step 2 of 4 </span><button class="btn primary" type="button" onclick="nextStep(2)">Continue →</button></div></div>
+    </div>
+
+    <div class="form-step hidden" data-step="3">
+     <h3>What should your website do?</h3><p class="muted">Help us understand your needs.</p>
+     <div class="fields">
+      <div class="field full"><label for="about">Tell us about your business *</label><textarea id="about" name="about" required placeholder="What do you sell or what service do you provide?"></textarea></div>
+      <div class="field full"><label for="products">Products / services (optional)</label><textarea id="products" name="products" placeholder="List your main products or services"></textarea></div>
+      <div class="field full"><label for="goal">Main website goal *</label><select id="goal" name="goal" required><option value="">Select your goal</option><option>Showcase my business</option><option>Receive customer enquiries</option><option>Display products / catalogue</option><option>Get more leads</option><option>Build my personal brand</option><option>Online sales / e-commerce</option><option>Other</option></select></div>
+     </div>
+     <div class="form-actions"><button class="btn" type="button" onclick="prevStep(3)">← Back</button><div><span class="muted small">Step 3 of 4 </span><button class="btn primary" type="button" onclick="nextStep(3)">Continue →</button></div></div>
+    </div>
+
+    <div class="form-step hidden" data-step="4">
+     <h3>Make it feel like your brand</h3><p class="muted">Choose your design. A logo is optional.</p>
+     <div class="fields">
+      <div class="field full"><div class="upload-box"><div class="upload-symbol">✦</div><div class="upload-content">
+       <h4>Upload your business logo <span class="muted">(Optional)</span></h4>
+       <p>JPG, PNG, WebP or GIF. Maximum original file size: 5 MB.</p>
+       <input class="file-picker" id="businessLogo" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+       <div class="file-preview hidden" id="logoPreviewWrap"><img id="logoPreview" alt="Business logo preview"><div><strong id="logoFileName"></strong><p class="muted small" id="logoFileInfo"></p><button type="button" class="btn" onclick="removeLogo()">Remove logo</button></div></div>
+       <p class="small" style="margin-top:10px">No logo? No problem — continue without one.</p>
+      </div></div></div>
+      <div class="field"><label for="designStyle">Preferred website style *</label><select id="designStyle" name="designStyle" required><option>Modern & Professional</option><option>Premium / Luxury</option><option>Minimal & Clean</option><option>Bold & Creative</option><option>Elegant & Classic</option><option>Colourful & Playful</option><option>Dark & Futuristic</option></select></div>
+      <div class="field"><label for="colourNote">Colour preference (optional)</label><input id="colourNote" name="colourNote" placeholder="e.g. dark background, gold accents"></div>
+      <div class="field full"><div class="field-label">Choose brand colours <span class="muted">(Select multiple)</span></div><div class="colour-box"><div class="colour-grid" id="colourGrid"></div><div class="selected-colours" id="selectedColours"><span class="muted small">No colours selected.</span></div><button type="button" class="btn" style="margin-top:12px" onclick="clearColours()">Clear selection</button></div></div>
+      <div class="field full"><label for="socialLinks">Social links (optional)</label><textarea id="socialLinks" name="socialLinks" placeholder="Instagram, Facebook, etc."></textarea></div>
+      <div class="field full"><label for="mapsLink">Google Maps link (optional)</label><input id="mapsLink" name="mapsLink" type="url" placeholder="https://maps.google.com/..."></div>
+      <div class="field full"><label for="extraNotes">Anything else? (optional)</label><textarea id="extraNotes" name="extraNotes" placeholder="Special requests, reference website or features"></textarea></div>
+     </div>
+     <div class="form-actions"><button class="btn" type="button" onclick="prevStep(4)">← Back</button><div><span class="muted small">Step 4 of 4 </span><button class="btn primary" type="submit">Submit request ↗</button></div></div>
+    </div>
+   </form>
+  </div>
+ </section>
+
+ <section class="container section" id="track">
+  <div class="panel track-panel reveal"><div class="section-head"><h2>Track your request.</h2><p>Enter the tracking ID you received after submitting.</p></div>
+   <form id="trackForm"><div class="field"><label for="trackingSearch">Tracking ID</label><input id="trackingSearch" required placeholder="e.g. WR-2026-0001"></div><button class="btn primary" style="margin-top:12px" type="submit">Find my request →</button></form><div id="trackResult"></div>
+  </div>
+ </section>
+</div>
+
+<section class="container success-wrap hidden" id="successPage"><div class="success-card"><div class="success-check">✓</div><h2>Request submitted!</h2><p class="muted">Keep your tracking ID safe.</p><div class="tracking-id" id="successTrackingId"></div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" onclick="copyTrackingId()">Copy tracking ID</button><button class="btn primary" onclick="submitAnother()">Submit another request</button></div><p class="muted small">Your request is saved in this browser.</p><button class="btn" onclick="returnToTracking()">Track your request</button></div></section>
+
+<section class="container section hidden" id="managementPage">
+ <div id="managementLogin" class="login panel"><span class="eyebrow">MANAGEMENT ACCESS</span><h2>Welcome back.</h2><p class="muted">Sign in to manage WEBRISE requests.</p>
+  <form id="managementLoginForm"><div class="field"><label for="managerName">Management member</label><select id="managerName" required></select></div><div class="field" style="margin-top:14px"><label for="managerPassword">Password</label><input id="managerPassword" type="password" required placeholder="Enter password"></div><button class="btn primary" style="width:100%;margin-top:18px" type="submit">Sign in →</button><button class="btn" style="width:100%;margin-top:8px" type="button" onclick="closeManagement()">Back to website</button></form><p class="muted small">Demo password: 12345</p>
+ </div>
+ <div id="dashboard" class="hidden">
+  <div class="dashboard-top"><div><span class="eyebrow">WEBRISE WORKSPACE</span><h2>Management Dashboard</h2><p id="signedInAs" class="muted"></p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="refreshDashboard()">Refresh</button><button class="btn danger" onclick="logoutManagement()">Log out</button></div></div>
+  <div class="stats"><div class="stat"><strong id="statTotal">0</strong><span>Total requests</span></div><div class="stat"><strong id="statPending">0</strong><span>Pending</span></div><div class="stat"><strong id="statProgress">0</strong><span>In progress</span></div><div class="stat"><strong id="statDone">0</strong><span>Completed</span></div></div>
+  <div class="tabs"><button class="tab active" onclick="setFilter('All',this)">All requests</button><button class="tab" onclick="setFilter('Pending',this)">Pending</button><button class="tab" onclick="setFilter('In Progress',this)">In progress</button><button class="tab" onclick="setFilter('Completed',this)">Completed</button></div>
+  <div class="field" style="max-width:450px;margin-bottom:15px"><label for="requestSearch">Search requests</label><input id="requestSearch" placeholder="Business, owner or tracking ID" oninput="renderRequests()"></div>
+  <div class="table-wrap"><table><thead><tr><th>Tracking ID</th><th>Business</th><th>Owner</th><th>Status</th><th>Assigned to</th><th>Action</th></tr></thead><tbody id="requestsTable"></tbody></table></div>
+ </div>
+</section>
+</main>
+
+<footer><div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span><strong style="color:white">WEBRISE</strong> — Rise Online. Grow Faster.</span><span>Business websites. Built around your brand.</span></div></footer>
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<div id="requestModal" class="modal-backdrop hidden"><div class="modal"><div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h2 id="modalTitle">Request details</h2><button class="btn" onclick="closeRequestModal()">Close ×</button></div><div id="modalBody"></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn primary" onclick="saveRequestEdits()">Save changes</button><button class="btn" onclick="downloadRequestJSON()">Download details</button></div></div></div>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const PEOPLE=["Naresh Dewasi","Piyush Chaudhary","Aryan Rajpurohit"];
+const PASSWORD="12345",REQUEST_KEY="webrise_requests_v4",STAFF_KEY="webrise_management_v4";
+const COLOURS=[["#ff3b30","Red"],["#ff5c8a","Rose"],["#e91e63","Pink"],["#9c27b0","Purple"],["#673ab7","Deep Purple"],["#536dfe","Indigo"],["#2962ff","Blue"],["#2196f3","Sky Blue"],["#03a9f4","Light Blue"],["#00bcd4","Cyan"],["#009688","Teal"],["#00bfa5","Mint"],["#00c853","Green"],["#4caf50","Light Green"],["#8bc34a","Lime"],["#ffeb3b","Yellow"],["#ffc107","Amber"],["#ff9800","Orange"],["#ff5722","Deep Orange"],["#795548","Brown"],["#607d8b","Blue Grey"],["#ffffff","White"],["#b9c7d9","Silver"],["#424242","Charcoal"],["#161b2b","Midnight"],["#000000","Black"],["#d4af37","Gold"],["#c0c0c0","Chrome Silver"],["#f5deb3","Champagne"],["#7fffd4","Aquamarine"]];
+let step=1,logoData="",logoName="",chosenColours=[],manager="",filter="All",editing=-1,toastTimer;
+
+function read(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch(e){return fallback}}
+function requests(){const v=read(REQUEST_KEY,[]);return Array.isArray(v)?v:[]}
+function saveRequests(list){try{localStorage.setItem(REQUEST_KEY,JSON.stringify(list));return true}catch(e){toast("Browser storage is full. Remove older requests or use a smaller logo.",true);return false}}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(msg,error=false){const t=$("toast");t.textContent=msg;t.classList.toggle("error",error);t.classList.remove("hidden");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.add("hidden"),3200)}
+function page(which){$("publicPage").classList.toggle("hidden",which!=="home");$("successPage").classList.toggle("hidden",which!=="success");$("managementPage").classList.toggle("hidden",which!=="management");window.scrollTo({top:0,behavior:"smooth"})}
+function showManagement(){page("management");$("managementLogin").classList.remove("hidden");$("dashboard").classList.add("hidden");populateManagers();if(manager)showDashboard()}
+function closeManagement(){page("home")}
+function populateManagers(){$("managerName").innerHTML=PEOPLE.map(n=>`<option>${esc(n)}</option>`).join("")}
+$("managementLoginForm").addEventListener("submit",e=>{e.preventDefault();if($("managerPassword").value!==PASSWORD){toast("Incorrect password.",true);return}manager=$("managerName").value;$("managerPassword").value="";showDashboard()});
+function showDashboard(){$("managementLogin").classList.add("hidden");$("dashboard").classList.remove("hidden");$("signedInAs").textContent="Signed in as "+manager;refreshDashboard()}
+function logoutManagement(){manager="";showManagement();toast("You have been logged out.")}
+function showStep(n){step=n;document.querySelectorAll(".form-step").forEach(el=>el.classList.toggle("hidden",Number(el.dataset.step)!==n));document.querySelectorAll(".step-item").forEach(el=>{const i=Number(el.dataset.stepLabel);el.classList.toggle("active",i===n);el.classList.toggle("done",i<n);el.querySelector(".step-number").textContent=i<n?"✓":i});if(n===4)renderColours();$("get-started").scrollIntoView({behavior:"smooth",block:"start"})}
+function validateStep(n){const panel=document.querySelector(`.form-step[data-step="${n}"]`);for(const el of panel.querySelectorAll("input,select,textarea")){if(el.type==="file"||el.disabled)continue;if(!el.checkValidity()){el.reportValidity();el.focus();return false}}return true}
+function nextStep(n){if(!validateStep(n))return;showStep(n+1)}
+function prevStep(n){showStep(n-1)}
+
+function renderColours(){const grid=$("colourGrid");if(grid.dataset.ready)return;grid.dataset.ready="1";grid.innerHTML=COLOURS.map(([hex,name])=>`<label class="colour-choice" title="${esc(name)}"><input type="checkbox" value="${hex}" data-name="${esc(name)}" aria-label="${esc(name)}" onchange="toggleColour(this)"><span class="swatch" style="background:${hex}"></span></label>`).join("")}
+function toggleColour(input){if(input.checked){if(!chosenColours.some(c=>c.hex===input.value))chosenColours.push({hex:input.value,name:input.dataset.name})}else chosenColours=chosenColours.filter(c=>c.hex!==input.value);renderSelectedColours()}
+function renderSelectedColours(){$("selectedColours").innerHTML=chosenColours.length?chosenColours.map(c=>`<span class="colour-chip">${esc(c.name)}</span>`).join(""):'<span class="muted small">No colours selected.</span>'}
+function clearColours(){chosenColours=[];document.querySelectorAll("#colourGrid input").forEach(i=>i.checked=false);renderSelectedColours()}
+
+$("businessLogo").addEventListener("change",async function(){
+ const file=this.files&&this.files[0];if(!file)return;
+ if(!["image/jpeg","image/png","image/webp","image/gif"].includes(file.type)){toast("Choose a JPG, PNG, WebP or GIF image.",true);this.value="";return}
+ if(file.size>5*1024*1024){toast("Logo must be 5 MB or smaller.",true);this.value="";return}
+ try{logoData=await compressImage(file);logoName=file.name;$("logoPreview").src=logoData;$("logoFileName").textContent=file.name;$("logoFileInfo").textContent=`Original file: ${(file.size/1048576).toFixed(2)} MB · Compressed for storage`;$("logoPreviewWrap").classList.remove("hidden");toast("Logo ready to submit.")}
+ catch(e){removeLogo(false);toast("Could not process this image. Try another image.",true)}
+});
+function compressImage(file){return new Promise((resolve,reject)=>{
+ const reader=new FileReader();reader.onerror=()=>reject(Error("Read failed"));
+ reader.onload=()=>{const img=new Image();img.onerror=()=>reject(Error("Image failed"));img.onload=()=>{
+  const scale=Math.min(1,1200/Math.max(img.width,img.height)),canvas=document.createElement("canvas");
+  canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));
+  const ctx=canvas.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);
+  let q=.82,data=canvas.toDataURL("image/jpeg",q);while(data.length>700000&&q>.35){q-=.1;data=canvas.toDataURL("image/jpeg",q)}
+  if(data.length>1000000)reject(Error("Image remains too large"));else resolve(data)
+ };img.src=reader.result};reader.readAsDataURL(file)
+})}
+function removeLogo(notify=true){logoData="";logoName="";$("businessLogo").value="";$("logoPreview").removeAttribute("src");$("logoPreviewWrap").classList.add("hidden");if(notify)toast("Logo removed.")}
+
+function trackingId(){const year=new Date().getFullYear();let max=0;requests().forEach(r=>{const m=String(r.trackingId||"").match(/^WR-\d{4}-(\d+)$/);if(m)max=Math.max(max,+m[1])});return `WR-${year}-${String(max+1).padStart(4,"0")}`}
+$("requestForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ for(let n=1;n<=4;n++){if(!validateStep(n)){showStep(n);return}}
+ const data=Object.fromEntries(new FormData(e.currentTarget).entries());
+ const r={...data,trackingId:trackingId(),createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),status:"Pending",assignedTo:"",publishedUrl:"",logoData,logoName,selectedColours:chosenColours.map(c=>({...c}))};
+ const all=requests();all.push(r);if(!saveRequests(all))return;
+ $("successTrackingId").textContent=r.trackingId;e.currentTarget.reset();removeLogo(false);clearColours();showStep(1);page("success")
+});
+function copyTrackingId(){const id=$("successTrackingId").textContent;if(navigator.clipboard?.writeText)navigator.clipboard.writeText(id).then(()=>toast("Tracking ID copied.")).catch(()=>copyFallback(id));else copyFallback(id)}
+function copyFallback(s){const t=document.createElement("textarea");t.value=s;document.body.appendChild(t);t.select();try{document.execCommand("copy");toast("Tracking ID copied.")}catch(e){toast("Your tracking ID: "+s)}t.remove()}
+function submitAnother(){page("home");$("get-started").scrollIntoView({behavior:"smooth"})}
+function returnToTracking(){page("home");setTimeout(()=>$("track").scrollIntoView({behavior:"smooth"}),50)}
+
+function dateText(v){if(!v)return "—";const d=new Date(v);return isNaN(d)?"—":d.toLocaleString()}
+function safeURL(v){try{const u=new URL(v);return ["http:","https:"].includes(u.protocol)?u.href:"#"}catch(e){return "#"}}
+$("trackForm").addEventListener("submit",e=>{
+ e.preventDefault();const id=$("trackingSearch").value.trim().toUpperCase(),r=requests().find(x=>String(x.trackingId).toUpperCase()===id),box=$("trackResult");
+ if(!r){box.innerHTML='<div class="detail" style="margin-top:15px">No request found. Check your tracking ID and try again.</div>';return}
+ box.innerHTML=`<div class="panel" style="margin-top:16px"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><strong>${esc(r.businessName)}</strong><span class="pill ${r.status==="Completed"?"done":r.status==="In Progress"?"progress":""}">${esc(r.status||"Pending")}</span></div><p class="muted small">${esc(r.trackingId)} · Submitted ${esc(dateText(r.createdAt))}</p><div class="detail-grid"><div class="detail"><div class="detail-label">Business</div>${esc(r.businessName)}</div><div class="detail"><div class="detail-label">Assigned management</div>${esc(r.assignedTo||"Not assigned yet")}</div><div class="detail full"><div class="detail-label">Published website</div>${r.publishedUrl?`<a target="_blank" rel="noopener" href="${esc(safeURL(r.publishedUrl))}">${esc(r.publishedUrl)}</a>`:"Not available yet"}</div></div></div>`
+});
+
+function refreshDashboard(){const all=requests();$("statTotal").textContent=all.length;$("statPending").textContent=all.filter(r=>r.status==="Pending").length;$("statProgress").textContent=all.filter(r=>r.status==="In Progress").length;$("statDone").textContent=all.filter(r=>r.status==="Completed").length;renderRequests()}
+function setFilter(f,b){filter=f;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));renderRequests()}
+function renderRequests(){const q=$("requestSearch").value.trim().toLowerCase();const list=requests().map((r,i)=>({...r,_i:i})).filter(r=>(filter==="All"||r.status===filter)&&[r.trackingId,r.businessName,r.ownerName,r.mobile,r.city].some(v=>String(v||"").toLowerCase().includes(q))).reverse();$("requestsTable").innerHTML=list.length?list.map(r=>`<tr><td><strong>${esc(r.trackingId)}</strong></td><td>${esc(r.businessName)}</td><td>${esc(r.ownerName)}</td><td><span class="pill ${r.status==="Completed"?"done":r.status==="In Progress"?"progress":""}">${esc(r.status||"Pending")}</span></td><td>${esc(r.assignedTo||"Unassigned")}</td><td><button class="btn" onclick="openRequest(${r._i})">View / Edit</button></td></tr>`).join(""):'<tr><td colspan="6" style="text-align:center;padding:30px">No requests found.</td></tr>'}
+
+function openRequest(index){
+ const r=requests()[index];if(!r){toast("Request not found.",true);return}editing=index;
+ $("modalTitle").textContent=r.businessName||"Request details";
+ const logo=r.logoData?`<div class="detail full"><div class="detail-label">Business logo</div><div class="logo-detail"><img src="${r.logoData}" alt="Uploaded logo"><div><p>${esc(r.logoName||"Business logo")}</p><button class="btn" onclick="downloadLogo(${index})">Download logo</button></div></div></div>`:'<div class="detail full"><div class="detail-label">Business logo</div>No logo uploaded.</div>';
+ const detail=(label,value,full=false)=>`<div class="detail ${full?"full":""}"><div class="detail-label">${label}</div><div class="detail-value">${value||'<span class="muted">Not provided</span>'}</div></div>`;
+ const colours=r.selectedColours?.length?r.selectedColours.map(c=>esc(c.name)).join(", "):esc(r.colourNote||"Not specified");
+ const link=v=>v?`<a target="_blank" rel="noopener" href="${esc(safeURL(v))}">${esc(v)}</a>`:"";
+ $("modalBody").innerHTML=`<div class="detail-grid">${logo}${detail("Tracking ID",esc(r.trackingId))}${detail("Submitted",esc(dateText(r.createdAt)))}${detail("Business",esc(r.businessName))}${detail("Owner",esc(r.ownerName))}${detail("Category",esc(r.businessType))}${detail("Mobile",r.mobile?`<a href="tel:${esc(r.mobile)}">${esc(r.mobile)}</a>`:"")}${detail("Email",r.email?`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`:"")}${detail("WhatsApp",esc(r.whatsapp))}${detail("City",esc(r.city))}${detail("State",esc(r.state))}${detail("Address",esc(r.address),true)}${detail("About",esc(r.about),true)}${detail("Products / services",esc(r.products),true)}${detail("Website goal",esc(r.goal))}${detail("Design style",esc(r.designStyle))}${detail("Brand colours",colours,true)}${detail("Social links",esc(r.socialLinks),true)}${detail("Google Maps",link(r.mapsLink),true)}${detail("Extra notes",esc(r.extraNotes),true)}
+ <div class="detail full"><div class="detail-label">Management updates</div><div class="fields">
+ <div class="field"><label for="editStatus">Status</label><select id="editStatus"><option ${r.status==="Pending"?"selected":""}>Pending</option><option ${r.status==="In Progress"?"selected":""}>In Progress</option><option ${r.status==="Completed"?"selected":""}>Completed</option></select></div>
+ <div class="field"><label for="editAssigned">Assigned to</label><select id="editAssigned"><option value="">Unassigned</option>${PEOPLE.map(n=>`<option ${r.assignedTo===n?"selected":""}>${esc(n)}</option>`).join("")}</select></div>
+ <div class="field full"><label for="editURL">Published website URL</label><input id="editURL" type="url" value="${esc(r.publishedUrl||"")}" placeholder="https://yourwebsite.com"></div>
+ <div class="field full"><label for="editNotes">Management notes</label><textarea id="editNotes">${esc(r.managementNotes||"")}</textarea></div>
+ </div></div></div>`;
+ $("requestModal").classList.remove("hidden");document.body.style.overflow="hidden"
+}
+function closeRequestModal(){$("requestModal").classList.add("hidden");document.body.style.overflow="";editing=-1}
+function saveRequestEdits(){const all=requests(),r=all[editing];if(!r)return;const url=$("editURL").value.trim();if(url&&!/^https?:\/\//i.test(url)){toast("Website URL must start with http:// or https://",true);$("editURL").focus();return}r.status=$("editStatus").value;r.assignedTo=$("editAssigned").value;r.publishedUrl=url;r.managementNotes=$("editNotes").value;r.updatedAt=new Date().toISOString();if(!saveRequests(all))return;closeRequestModal();refreshDashboard();toast("Request updated successfully.")}
+function downloadLogo(i){const r=requests()[i];if(!r?.logoData){toast("No logo available.",true);return}const a=document.createElement("a");a.href=r.logoData;a.download="WEBRISE_business_logo.jpg";document.body.appendChild(a);a.click();a.remove()}
+function downloadRequestJSON(){const r=requests()[editing];if(!r)return;const copy={...r};delete copy.logoData;const blob=new Blob([JSON.stringify(copy,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=(r.trackingId||"request")+"_details.json";a.click();URL.revokeObjectURL(url)}
+
+(function init(){
+ renderColours();populateManagers();
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target)}}),{threshold:.12});
+ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+})();
+</script>
+</body>
+</html>
